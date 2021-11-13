@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "registrations"}
+  devise_for :users, path: "admin", path_names: { sign_in: "/" }, controllers: { registrations: "registrations"}
   as :user do
     get '/' => 'devise/registrations#new'
   end

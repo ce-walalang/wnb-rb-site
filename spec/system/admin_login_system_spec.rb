@@ -8,12 +8,19 @@ RSpec.describe "Admin login system", type: :system do
 
   context "admin not logged in" do
 
+    let(:email) { "admin@wnb.rb" }
+    let(:password) { "password" }
+
+    before do
+      create(:user, email: email, password: password)
+    end
+
     it "enables me to login to WNB.rb admin" do
       visit "/admin"
 
-      fill_in "Email", with: "admin@wnb.rb"
-      fill_in "Password", with: "password"
-      click_button "Sign In"
+      fill_in "Email", with: email
+      fill_in "Password", with: password
+      click_button "Log in"
 
       expect(page).to have_text("successfully logged in")
     end
